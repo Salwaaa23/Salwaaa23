@@ -1,0 +1,38 @@
+Public Function CellSort(r As Range) As String
+    Dim bry() As Long, L As Long, U As Long
+    ch = r(1).Text
+    ary = Split(ch, ",")
+    L = LBound(ary)
+    U = UBound(ary)
+    ReDim bry(L To U)
+    For i = LBound(ary) To UBound(ary)
+        bry(i) = CLng(ary(i))
+    Next i
+
+    Call BubbleSort(bry)
+
+    For i = LBound(bry) To UBound(bry)
+        ary(i) = CStr(bry(i))
+    Next i
+    CellSort = Join(ary, ",")
+End Function
+
+
+Sub BubbleSort(arr)
+    Dim strTemp As Variant
+    Dim i As Long
+    Dim j As Long
+    Dim lngMin As Long
+    Dim lngMax As Long
+    lngMin = LBound(arr)
+    lngMax = UBound(arr)
+    For i = lngMin To lngMax - 1
+        For j = i + 1 To lngMax
+            If arr(i) > arr(j) Then
+                strTemp = arr(i)
+                arr(i) = arr(j)
+                arr(j) = strTemp
+            End If
+        Next j
+    Next i
+End Sub
