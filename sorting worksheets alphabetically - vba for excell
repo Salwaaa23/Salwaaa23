@@ -1,0 +1,30 @@
+Sub SortWorksheetsAlphabetially()
+
+'Turn off screen updating
+Application.ScreenUpdating = False
+
+'Create variables
+Dim wb As Workbook
+Dim wsCount As Integer
+Dim i As Integer
+Dim j As Integer
+
+'Declare the workbook
+Set wb = Workbooks(ActiveWorkbook.Name)
+
+'Count the number of worksheets
+wsCount = wb.Worksheets.Count
+
+'Loop through all worksheets and move
+For i = 1 To wsCount - 1
+    For j = i + 1 To wsCount
+        If wb.Worksheets(j).Name < wb.Worksheets(i).Name Then
+            wb.Worksheets(j).Move before:=wb.Worksheets(i)
+        End If
+    Next j
+Next i
+
+'Turn on screen updating
+Application.ScreenUpdating = True
+
+End Sub
